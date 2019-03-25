@@ -1,7 +1,7 @@
 # CS410_Final_Project
 Backend of CS410 Spring 2019 Final Project
 
-Archetecture:
+Architecture:
 
 Front End (ReactJs)
   Upload pdf file and send it to backend (optional)
