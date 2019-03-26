@@ -27,5 +27,6 @@ def convert_pdf_to_txt(path):
     retstr.close()
     return text
 
-pdf_text = convert_pdf_to_txt("./resume/Zecheng's Resume.pdf")
-print(pdf_text)
+if __name__ == '__main__':
+    pdf_text = convert_pdf_to_txt("./resume/Zecheng's Resume.pdf")
+    print(pdf_text)
