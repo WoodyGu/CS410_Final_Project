@@ -17,6 +17,7 @@ geojson==2.3.0
 geoplotlib==0.3.2
 google-api-python-client==1.6.5
 googlemaps==2.5.1
+gunicorn==19.9.0
 html5lib==1.0.1
 httplib2==0.10.3
 idna==2.6
