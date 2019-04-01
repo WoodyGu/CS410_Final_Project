@@ -1,11 +1,11 @@
 from flask import Flask
-import readpdf
+# import readpdf
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
     return "Hello World!"
-# 
+#
 # @app.route('/api/text/<filename>', methods=['GET'])
 # def get_pdf_content(filename):
 #     file_path = './resume/' + filename
