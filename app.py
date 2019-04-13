@@ -19,7 +19,8 @@ def get_pdf_content(filename):
 @app.route('/api/ranking/<query>', methods=['GET'])
 def rank_documents(query):
     pdf_file_list = os.listdir('./resume/')
-    return json.dumps(pdf_file_list)
+    candidate_list = utils.parse_candidate(pdf_file_list)
+    return json.dumps(candidate_list)
 
 if __name__ == '__main__':
     app.run()
