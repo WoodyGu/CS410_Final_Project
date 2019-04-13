@@ -37,9 +37,9 @@ def create_json_document():
     return all_candidate
 
 if __name__ == "__main__":
-    all_candidate = create_json_document()
-    with open("./candidate_info.json", 'w') as fd:
-        json.dump(all_candidate, fd)
-    # with open("./candidate_info.json", 'r') as file:
-    #     data = json.load(file)
-    #     print(type(data))
+    # all_candidate = create_json_document()
+    # with open("./candidate_info.json", 'w') as fd:
+    #     json.dump(all_candidate, fd)
+    with open("./document/candidate_info.json", 'r') as file:
+        data = json.load(file)
+        print(type(data[0]))

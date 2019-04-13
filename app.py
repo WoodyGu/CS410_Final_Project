@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 import gunicorn
 import readpdf
 import utils
@@ -6,6 +7,8 @@ import json
 import os
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 
 @app.route('/')
 def hello():
