@@ -26,8 +26,13 @@ def generate_datafile(candidate_text_list):
 		file.write(resume_txt + "\n")
 	file.close()
 
-def get_top_k_candidates(results, candidate_text_list):
+def get_top_k_candidates(results, candidate_text_list, top_k):
 	top_k_candidates = []
+	if len(results) == 0:
+		for i in range(top_k):
+			top_k_candidates.append(candidate_text_list[i])
+			return top_k_candidates
+
 	for result_tuple in results:
 		tmp_list = list(result_tuple)
 		text_idx = tmp_list[0]
@@ -35,7 +40,7 @@ def get_top_k_candidates(results, candidate_text_list):
 		top_k_candidates.append(candidate_dict[text])
 	return top_k_candidates
 
-def ranking_function():
+def ranking_function(top_k):
 	cfg = "config.toml"
 	idx = metapy.index.make_inverted_index(cfg)
 	ranker = metapy.index.OkapiBM25(k1=1.2,b=0.75,k3=500)
@@ -48,11 +53,10 @@ def ranking_function():
 		print("query-runner table needed in {}".format(cfg))
 		sys.exit(1)
 
-	top_k = 3
 	query_path = query_cfg.get('query-path', 'queries.txt')
 
 	query = metapy.index.Document()
-	print('Running queries')
+
 	with open(query_path) as query_file:
 		line = query_file.readline()
 		query.content(line.strip())
@@ -65,6 +69,6 @@ candidate_dict = {}
 if __name__ == '__main__':
 	candidate_text_list = parse_json("./document/candidate_info.json")
 	generate_datafile(candidate_text_list)
-	final_result = ranking_function()
+	final_result = ranking_function(top_k)
 	final_candidates = get_top_k_candidates(final_result, candidate_text_list)
 	print(final_candidates)

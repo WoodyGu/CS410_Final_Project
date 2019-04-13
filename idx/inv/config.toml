@@ -1,0 +1,12 @@
+index = "idx"
+corpus = "line.toml"
+dataset = "resume_set"
+stop-words = "stopwords.txt"
+prefix = "."
+[[analyzers]]
+	filter = "default-unigram-chain"
+	ngram = 1
+	method = "ngram-word"
+[query-runner]
+	query-id-start = 1
+	query-path = "queries.txt"
