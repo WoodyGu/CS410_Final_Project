@@ -21,16 +21,16 @@ def get_pdf_content(filename):
     file_path = './resume/' + filename
     return readpdf.convert_pdf_to_txt(file_path)
 
-@app.route('/api/ranking/<num_doc>/<query>', methods=['GET'])
-def rank_documents(num_doc, query):
-    num_doc = int(num_doc)
+@app.route('/api/ranking/<query>', methods=['GET'])
+def rank_documents(query):
     # pdf_file_list = os.listdir('./resume/')
     with open("queries.txt", 'w') as fd:
         fd.write(str(query))
     candidate_text_list = ranking_function.parse_json("./document/candidate_info.json")
+    num_doc = len(candidate_text_list)
     ranking_function.generate_datafile(candidate_text_list)
     final_result = ranking_function.ranking_function(num_doc)
-    final_candidates = ranking_function.get_top_k_candidates(final_result, candidate_text_list, num_doc)
+    final_candidates = ranking_function.get_top_k_candidates(final_result, candidate_text_list)
     qualified_candidate = utils.parse_candidate(final_candidates)
     return json.dumps(qualified_candidate)
 
