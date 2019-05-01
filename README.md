@@ -1,19 +1,17 @@
 # CS410_Final_Project
-Backend of CS410 Spring 2019 Final Project
+CS410 Spring 2019 Final Project Resume Ranker
 
-Architecture:
+##Usage of the application: 
 
-Front End (ReactJs)
-  Upload pdf file and send it to backend (optional)
-  User able to enter queries and keywords
-  Simple UI Design
-Back End (Python Flask)
-  File storage
-  Either Use illinois Box api: https://github.com/box/box-python-sdk (hard)
-  OR Directly save the pdf file to python API (easy)
-  Store parsed file information (e.g name, phone number)
-  Ranking systems
-  Use the top ranking function of MP-2
-  Return the result of ranking to front end:
-  Name of the candidate
-  Link of pdf file of that candidate
+Go to our website at [https://cs410resumeranker.herokuapp.com](https://cs410resumeranker.herokuapp.com). We have more than 20 resumes from candidates majoring in financial engineering, computer engineering, computer science and other majors. Enter keywords about the job position in the search box, then select the number of most qualified candidates you want to display. Click search button, and you will see names of top candidates and links to their PDF resumes. Candidates are displayed based on how much their resumes match the entered keywords. You can click the link to candidates' resumes to take a closer look at their experience and background. 
+
+##Implementation of the application:
+
+###Front end: 
+
+We use React to develop front end user interface. We got feedback about the design and user interface of our website from our peers and made changes accordingly. 
+
+###Back end:
+
+We use Flask as our web framework for back end. We save resumes of candidates on Heroku cloud application platform. We developed a ranking function to rank candidates based on how much their resumes match keywords entered by the employer. Resumes are parsed into json files for ranking. 
+
