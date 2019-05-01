@@ -70,5 +70,5 @@ if __name__ == '__main__':
 	candidate_text_list = parse_json("./document/candidate_info.json")
 	generate_datafile(candidate_text_list)
 	final_result = ranking_function(top_k)
-	final_candidates = get_top_k_candidates(final_result, candidate_text_list)
+	final_candidates = get_top_k_candidates(final_result, candidate_text_list, top_k)
 	print(final_candidates)

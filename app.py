@@ -21,17 +21,23 @@ def get_pdf_content(filename):
     file_path = './resume/' + filename
     return readpdf.convert_pdf_to_txt(file_path)
 
-@app.route('/api/ranking/<query>', methods=['GET'])
-def rank_documents(query):
+@app.route('/api/ranking/<num_doc>/<query>', methods=['GET'])
+def rank_documents(num_doc, query):
+    num_doc = int(num_doc)
     # pdf_file_list = os.listdir('./resume/')
     with open("queries.txt", 'w') as fd:
         fd.write(str(query))
     candidate_text_list = ranking_function.parse_json("./document/candidate_info.json")
     ranking_function.generate_datafile(candidate_text_list)
-    final_result = ranking_function.ranking_function(6)
-    final_candidates = ranking_function.get_top_k_candidates(final_result, candidate_text_list, 6)
+    final_result = ranking_function.ranking_function(num_doc)
+    final_candidates = ranking_function.get_top_k_candidates(final_result, candidate_text_list, num_doc)
     qualified_candidate = utils.parse_candidate(final_candidates)
     return json.dumps(qualified_candidate)
+
+@app.route('/api/file/totalcount', methods=['GET'])
+def get_doc_count():
+    all_file = os.listdir('./resume/')
+    return json.dumps(len(all_file))
 
 @app.route('/api/file/<filename>')
 def get_pdf_file(filename):
