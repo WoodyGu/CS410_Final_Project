@@ -38,13 +38,13 @@ def get_top_k_candidates(results, candidate_text_list):
 		text = candidate_text_list[text_idx]
 		# print("text: ", text)
 		top_k_candidates.append(candidate_dict[text])
-		# print("name: ", candidate_dict[text])
+		print("name: ", candidate_dict[text])
 	return top_k_candidates
 
 def ranking_function(top_k):
 	cfg = "config.toml"
 	idx = metapy.index.make_inverted_index(cfg)
-	ranker = metapy.index.JelinekMercer(0.4) # metapy.index.PivotedLength(0.7)
+	ranker = metapy.index.JelinekMercer(0.7) # metapy.index.PivotedLength(0.7)
 
 	with open(cfg, 'r') as fin:
 		cfg_d = pytoml.load(fin)
@@ -62,7 +62,7 @@ def ranking_function(top_k):
 		line = query_file.readline()
 		query.content(line.strip())
 		results = ranker.score(idx, query, top_k)
-		# print("results index: ", results)
+		print("results index: ", results)
 
 	return results
 
