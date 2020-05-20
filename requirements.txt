@@ -22,7 +22,7 @@ google-api-python-client==1.6.5
 googlemaps==2.5.1
 gunicorn==19.9.0
 html5lib==1.0.1
-httplib2==0.10.3
+httplib2==0.18.0
 idna==2.6
 imgkit==1.0.1
 ipython-genutils==0.2.0
